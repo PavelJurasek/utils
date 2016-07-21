@@ -418,17 +418,17 @@ class Image extends Nette\Object
 	 */
 	public static function calculateCutout($srcWidth, $srcHeight, $left, $top, $newWidth, $newHeight)
 	{
-		if (substr($newWidth, -1) === '%') {
-			$newWidth = round($srcWidth / 100 * $newWidth);
+		if (is_string($newWidth) && substr($newWidth, -1) === '%') {
+			$newWidth = (int) round($srcWidth / 100 * substr($newWidth, 0, -1));
 		}
-		if (substr($newHeight, -1) === '%') {
-			$newHeight = round($srcHeight / 100 * $newHeight);
+		if (is_string($newHeight) && substr($newHeight, -1) === '%') {
+			$newHeight = (int) round($srcHeight / 100 * substr($newHeight, 0, -1));
 		}
-		if (substr($left, -1) === '%') {
-			$left = round(($srcWidth - $newWidth) / 100 * $left);
+		if (is_string($left) && substr($left, -1) === '%') {
+			$left = (int) round(($srcWidth - $newWidth) / 100 * substr($left, 0, -1));
 		}
-		if (substr($top, -1) === '%') {
-			$top = round(($srcHeight - $newHeight) / 100 * $top);
+		if (is_string($top) && substr($top, -1) === '%') {
+			$top = (int) round(($srcHeight - $newHeight) / 100 * substr($top, 0, -1));
 		}
 		if ($left < 0) {
 			$newWidth += $left;
