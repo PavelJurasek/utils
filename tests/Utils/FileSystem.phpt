@@ -65,6 +65,10 @@ test(function () { // copy
 	FileSystem::copy(TEMP_DIR . '/3/file', TEMP_DIR . '/3/x/file');
 	Assert::same('Hello', FileSystem::read(TEMP_DIR . '/3/x/file'));
 
+	FileSystem::createDir(TEMP_DIR . '/3/y');
+    FileSystem::copy(TEMP_DIR . '/3/file', TEMP_DIR . '/3/y');
+    Assert::same('Hello', FileSystem::read(TEMP_DIR . '/3/y/file'));
+
 	FileSystem::copy('remote://example.com', TEMP_DIR . '/3/x/y/file');
 	Assert::true(is_file(TEMP_DIR . '/3/x/y/file'));
 
